@@ -25,19 +25,56 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="background-color: #282c34;">
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div class="container-fluid" >
+      <div class="row">
+          <div class="col-sm-auto bg-dark sticky-top">
+              <div class="d-flex flex-sm-column flex-row flex-nowrap bg-dark align-items-center sticky-top">
+                  <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                              <i class="bi-house fs-2 sidebar-link"></i>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                              <i class="bi-heart fs-2 sidebar-link active"></i>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" class="nav-link py-3 px-2 sidebar-link" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
+                              <i class="bi-search fs-2"></i>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" class="nav-link py-3 px-2 sidebar-link" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products">
+                              <i class="bi-fire fs-2"></i>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" class="nav-link py-3 px-2 sidebar-link" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
+                              <i class="bi-star fs-2"></i>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-sm p-3 min-vh-100">
+              <p>
+                <div id="root"></div>
+              </p>
+          </div>
+      </div>
+  </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
