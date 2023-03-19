@@ -4,7 +4,8 @@
 3. npx create-react-app sample-app
 4. App.js değişiklik
 5. Bootstrap kütüphanesinin eklenmesi
-6. 
+6. react router kullanımı
+7. 
 
 
 
