@@ -1,0 +1,9 @@
+.sidebar-link {
+    color: #fff;
+  }
+  .sidebar-link:hover {
+    color: #61dafb;
+  }
+  .sidebar-link.active-link {
+    color: #61dafb;
+  }
