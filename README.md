@@ -5,10 +5,6 @@
 4. App.js değişiklik
 5. Bootstrap kütüphanesinin eklenmesi
 6. react router kullanımı
-7. 
+7. backend api entegrasyonu (axios)
+8. 
 
-
-
-hazır api listesi --> https://www.themoviedb.org/
-deploy için burası kullanılabilir --> https://vercel.com/
-örnek tasarım için --> https://github.com/webistomin/react-movie-app

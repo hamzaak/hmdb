@@ -1,9 +1,10 @@
 import React from 'react'
+import {Intro} from './partials/intro';
 
 function Home() {
     return (
         <div>
-            Hello World :)
+            <Intro />
         </div>
     )
 }

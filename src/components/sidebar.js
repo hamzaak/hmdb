@@ -4,7 +4,6 @@ import './sidebar.css';
 
 function Sidebar() {
     const currentRoute = useLocation().pathname;
-    console.info(currentRoute);
     return (
         <div className="d-flex flex-sm-column flex-row flex-nowrap bg-dark align-items-center sticky-top">
             <ul className="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
