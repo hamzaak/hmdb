@@ -15,10 +15,10 @@ const Routing = () => {
     <Router>
        <div className="container-fluid">
         <div className="row">
-          <div className="col-sm-auto bg-dark sticky-top">
+          <div className="col-sm-auto bg-dark sticky-top nopadding">
             <Sidebar />
           </div>
-          <div className='col-sm p-3 min-vh-100'>
+          <div className='col-sm min-vh-100 nopadding'>
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route path="/likes" element={<Likes />} />
