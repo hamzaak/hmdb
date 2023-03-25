@@ -10,3 +10,17 @@
     background-image:
         linear-gradient(to right, #000, rgba(0,0,0,0) 100%);
 }
+
+.image-hover-zoom {
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.image-hover-zoom img {
+    width: 100%;
+    transition: 0.5s all ease-in-out;
+}
+
+.image-hover-zoom:hover img {
+    transform: scale(1.1);
+}

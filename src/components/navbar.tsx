@@ -87,7 +87,7 @@ export function NavbarMinimal() {
         <Image maw={30} src="./logo.png" alt="Logo" />
       </Center>
       <Navbar.Section grow mt={30}>
-        <Stack justify="center" spacing={0}>
+        <Stack justify="center" spacing={5}>
           {links}
         </Stack>
       </Navbar.Section>

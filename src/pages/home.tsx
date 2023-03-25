@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './home.css';
-import { Text, Stack, Container, Image, Overlay, Title, Rating, Grid, MediaQuery, Divider } from "@mantine/core";
+import { Text, Stack, Container, Image, Overlay, Title, Rating, Grid, MediaQuery, Loader } from "@mantine/core";
 import { Carousel } from '@mantine/carousel';
 import { tmdbKey, tmdbBaseUrl, tmdbImageBaseUrl } from '../config';
 import { Movie } from '../models/movie';
@@ -12,6 +12,7 @@ interface IHomeProps {
 interface IHomeState {
     latestMovie?: Movie;
     nowPlayingMovies?: [Movie];
+    nowPlayingMoviesLoading?: boolean;
 }
 
 export default class Home extends React.Component<IHomeProps, IHomeState> {
@@ -20,7 +21,8 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
     
         this.state = {
             latestMovie: {},
-            nowPlayingMovies: [{}]
+            nowPlayingMovies: [{}],
+            nowPlayingMoviesLoading: true
         };
       }
     
@@ -29,7 +31,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
             .then(res => {
                 const movies = res.data.results;
                 const latestMovie = res.data.results[0];
-                this.setState({ latestMovie: latestMovie, nowPlayingMovies: movies });
+                this.setState({ latestMovie: latestMovie, nowPlayingMovies: movies, nowPlayingMoviesLoading: false });
                 
             });
         /*
@@ -65,10 +67,19 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                             <Text ta="left" fz="lg">
                                 {this.state.latestMovie?.overview}
                             </Text>
-                            <Divider my="sm" />
                         </Stack>
                     </Overlay>
                 </MediaQuery>
+
+                {
+                    this.state.nowPlayingMoviesLoading && (
+                    <Overlay opacity={1} style={{marginLeft: '7rem'}}>
+                        <Stack align="center" justify="center" style={{height: '100%', width: '100%'}}>
+                            <Loader color="red" />
+                        </Stack>
+                    </Overlay>
+                    )
+                }
                 
                 <MediaQuery largerThan="md" styles={{ display: 'none' }}>
                     <Stack mt={20} align="flex-start" justify="center" style={{height: '100%', width: '100%'}}>
@@ -90,11 +101,11 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                         slidesToScroll={5}>
                         {this.state.nowPlayingMovies?.map(function(movie, index){
                             return <Carousel.Slide key={index}>
-                                <Stack spacing={5}>
+                                <Stack spacing={5} style={{cursor: 'pointer'}}>
                                     {
                                         movie.backdrop_path && 
                                         (
-                                            <Image height={360} mx="auto" radius="md" src={tmdbImageBaseUrl + '/t/p/w1280' + movie.backdrop_path} alt={movie.original_title} />
+                                            <Image className='image-hover-zoom' height={360} mx="auto" src={tmdbImageBaseUrl + '/t/p/w1280' + movie.backdrop_path} alt={movie.original_title} />
                                         )
                                     }
                                     <Text w={200} >{movie.original_title}</Text>
@@ -104,6 +115,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                                 </Carousel.Slide>;
                         })}
                     </Carousel>
+                    
                 </Stack>
             </Container>
     )}

@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <Router>
-      <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+      <MantineProvider theme={{ colorScheme: 'dark', primaryColor: 'red'}} withGlobalStyles withNormalizeCSS>
         <AppShell
         navbar={<NavbarMinimal />}
         styles={(theme) => ({
