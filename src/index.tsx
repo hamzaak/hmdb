@@ -19,7 +19,8 @@ root.render(
         <AppShell
         navbar={<NavbarMinimal />}
         styles={(theme) => ({
-          main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
+          main: { backgroundColor: 'black',
+          paddingTop: 0, paddingRight:0},
         })}>
         <ThemeProvider >
             <Routes>

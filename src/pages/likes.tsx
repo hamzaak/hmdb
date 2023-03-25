@@ -2,7 +2,7 @@ import { Text, Button, Stack } from "@mantine/core";
 
 export default function Likes() {
   return (
-    <Stack align="center" mt={50}>
+    <Stack >
         <Text size="xl" weight={500}>
         Likes
         </Text>
