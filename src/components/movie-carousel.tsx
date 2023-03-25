@@ -58,7 +58,7 @@ export default class MovieCarousel extends React.Component<IMovieCarouselProps, 
                             </Carousel>
                         </Stack>
                     )
-                }
+            }
             </>
     )}
 };

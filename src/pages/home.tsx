@@ -5,12 +5,15 @@ import { Text, Stack, Container, Image, Overlay, Title, Rating, Grid, MediaQuery
 import { tmdbKey, tmdbBaseUrl, tmdbImageBaseUrl } from '../config';
 import { Movie } from '../models/movie';
 import MovieCarousel from '../components/movie-carousel';
+import { Carousel } from '@mantine/carousel';
+import MovieItem from '../components/movie-item';
 
 interface IHomeProps {
 }
 
 interface IHomeState {
     latestMovie?: Movie;
+    movies?: [Movie];
     loading?: boolean;
 }
 
@@ -20,6 +23,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
     
         this.state = {
             latestMovie: {},
+            movies: [{}],
             loading: true
         };
       }
@@ -28,19 +32,20 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
         axios.get(`${tmdbBaseUrl}/movie/now_playing?api_key=${tmdbKey}&page=1`)
             .then(res => {
                 const movies = res.data.results;
-                const latestMovieIndex = Math.floor(Math.random() * (movies.length));
-                const latestMovie = res.data.results[latestMovieIndex];
-                this.setState({ latestMovie: latestMovie, loading: false });
+                const latestMovie = movies[0];
+                movies.shift();
+                this.setState({ latestMovie: latestMovie, movies: movies, loading: false });
             });
-
     }
 
     render() {
         return (
             <Container fluid>
-                { !this.state.loading && 
+                { 
+                    !this.state.loading && 
                     (
                         <>
+                        
                         <Grid>
                             <Grid.Col span={2}></Grid.Col>
                             <Grid.Col span="auto">
@@ -71,14 +76,32 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                                 </Text>
                             </Stack>
                         </MediaQuery>
+
+                        {
+                            !this.state.loading && 
+                            (
+                                <Stack mt={30}>
+                                    <Text fz="lg">Now playing movies</Text>
+                                    <Carousel
+                                        height={440}
+                                        slideSize="16.66%"
+                                        slideGap="xs"
+                                        align="start"
+                                        slidesToScroll={6}>
+                                        {this.state.movies?.map(function(movie, index){
+                                            return <Carousel.Slide key={index}>
+                                                    <MovieItem movie={movie} />
+                                                </Carousel.Slide>;
+                                        })}
+                                    </Carousel>
+                                </Stack>
+                            )
+                        }
                         </>
                     )
+                    
                 }
                 
-                <MovieCarousel
-                    movieType='now_playing'
-                    title='Now playing movies' />
-
                 <MovieCarousel
                     movieType='popular'
                     title='Popular movies' />
