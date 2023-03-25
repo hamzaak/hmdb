@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './home.css';
-import { Text, Stack, Container, Image, Overlay, Title, Rating } from "@mantine/core";
+import { Text, Stack, Container, Image, Overlay, Title, Rating, Grid } from "@mantine/core";
 import { tmdbKey, tmdbBaseUrl, tmdbImageBaseUrl } from '../config';
 import { Movie } from '../models/movie';
 
@@ -32,12 +32,22 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
 
     render() {
         return (
-            <Container fluid className='now-playing' style={{padding:0, margin:0}}>
-               {this.state.nowPlayingMovie && 
-                (<Image mx="auto" src={tmdbImageBaseUrl + '/t/p/w1280' + this.state.nowPlayingMovie?.backdrop_path} alt="Latest Movie" />)
-                }
-                
-                <Overlay opacity={0}>
+            <Container fluid>
+                <Grid>
+                    <Grid.Col span={2}></Grid.Col>
+                    <Grid.Col span="auto">
+                        <Container fluid className='now-playing' style={{padding:0, margin:0}}>
+                            {
+                                this.state.nowPlayingMovie && 
+                                (
+                                    <Image mx="auto" src={tmdbImageBaseUrl + '/t/p/w1280' + this.state.nowPlayingMovie?.backdrop_path} alt="Latest Movie" />
+                                )
+                            }
+                        </Container>
+                    </Grid.Col>
+                </Grid>
+
+                <Overlay opacity={0} style={{marginLeft: '6rem'}}>
                     <Stack align="flex-start" justify="center" style={{height: '100%', width: '50%'}}>
                         <Title order={2}>{this.state.nowPlayingMovie?.original_title}</Title>
                         <Rating value={this.state.nowPlayingMovie?.vote_average ? this.state.nowPlayingMovie?.vote_average / 2 : 0} fractions={50} readOnly/>

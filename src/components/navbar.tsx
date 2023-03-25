@@ -1,13 +1,7 @@
 import { useState } from 'react';
-import { Navbar, Center, UnstyledButton, createStyles, Stack, rem, Image } from '@mantine/core';
-import {
-  IconHome2,
-  IconHeart,
-  IconSearch,
-  IconStar
-} from '@tabler/icons-react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import { Navbar, Center, UnstyledButton, createStyles, Stack, rem, Image } from '@mantine/core';
+import { AiOutlineHome, AiOutlineHeart, AiOutlineSearch, AiOutlineFire, AiOutlineStar } from 'react-icons/ai';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -49,13 +43,12 @@ function NavbarLink({ icon: Icon, active, onClick }: NavbarLinkProps) {
 }
 
 const mockdata = [
-  { icon: IconHome2, path: ''},
-  { icon: IconHeart, path: 'likes' },
-  { icon: IconSearch, path: 'search' },
-  { icon: IconStar, path: 'stars'}
+  { icon: AiOutlineHome, path: ''},
+  { icon: AiOutlineHeart, path: 'likes' },
+  { icon: AiOutlineSearch, path: 'search' },
+  { icon: AiOutlineFire, path: 'now-playing' },
+  { icon: AiOutlineStar, path: 'stars'}
 ];
-
-
 
 export function NavbarMinimal() {
   
@@ -63,12 +56,14 @@ export function NavbarMinimal() {
   const location = useLocation();
   let currentIndex = 0;
   if(location.pathname.startsWith('/stars')) {
-    currentIndex = 3;
+    currentIndex = 4;
   } else if (location.pathname.startsWith('/search')) {
+    currentIndex = 3;
+  } else if (location.pathname.startsWith('/likes')) {
     currentIndex = 2;
   } else if (location.pathname.startsWith('/likes')) {
     currentIndex = 1;
-  } 
+  }
 
   const routeChange = (index: number, path: string) => { 
     setActive(index)
@@ -76,8 +71,6 @@ export function NavbarMinimal() {
   }
 
   const [active, setActive] = useState(currentIndex);
-
- 
 
   const links = mockdata.map((link, index) => (
     <NavbarLink
