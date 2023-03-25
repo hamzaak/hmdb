@@ -1,5 +1,6 @@
 .now-playing {
     position: relative;
+    height: 100%;
 }
   
 .now-playing:after {
