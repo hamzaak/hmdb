@@ -1,12 +1,13 @@
-<h1 align="center">HMDb: Hamza Movie Database</h1>
+# [HMDb: Hamza Movie Database Mantine Template](https://hmdb-react.vercel.app)
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss.png" alt="HMDb" width="100%">
-</p>
+This project is a tutorial code repo for learning React.
+
+![hmdb](https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss.png)
 
 [Demo](https://hmdb-react.vercel.app/)
 
-<p>
-    This project is a tutorial code repo for learning React.
-</p>
+## npm scripts
+
+- `npm start` – start project locally
+- `npm run build` – export project for production
 
