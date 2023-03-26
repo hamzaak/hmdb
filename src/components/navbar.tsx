@@ -91,7 +91,7 @@ export function NavbarMinimal() {
 
   return (
     <Navbar width={{ base: 80 }} p="md" style={{backgroundColor: 'black'}}>
-      <Center>
+      <Center mt={40}>
         <Image maw={30} src="./logo.png" alt="Logo" />
       </Center>
       <Navbar.Section grow mt={30}>

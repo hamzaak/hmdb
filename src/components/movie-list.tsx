@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Text, Grid, Stack, Title, Button, Loader } from "@mantine/core";
 import { tmdbKey, tmdbBaseUrl } from '../config';
 import { Movie } from '../models/movie';
-import MovieItem from './movie-item';
+import MovieListItem from './movie-list-item';
 
 interface IMovieListProps {
     title: string;
@@ -32,8 +32,7 @@ export default class MovieList extends React.Component<IMovieListProps, IMovieLi
 
         //bu kod satırı olmazsa button state değerini değiştiremez!
         this.loadMoreClick = this.loadMoreClick.bind(this);
-        
-      }
+    }
 
     componentDidMount() {
         this.fetchMovies(1);
@@ -71,9 +70,7 @@ export default class MovieList extends React.Component<IMovieListProps, IMovieLi
                 <Text color="gray">{this.state.total_results} items</Text>
                 <Grid>
                     {this.state.movies?.map(function(movie, index){
-                        return <Grid.Col span={2} key={index}>
-                                <MovieItem movie={movie} />
-                            </Grid.Col>;
+                        return <MovieListItem key={index} movie={movie} />;
                     })}
                 </Grid>
 

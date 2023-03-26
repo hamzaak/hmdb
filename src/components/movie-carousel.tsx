@@ -12,27 +12,35 @@ interface IMovieCarouselProps {
 }
 
 interface IMovieCarouselState {
-    movies?: [Movie];
-    loading?: boolean;
+    movies: Movie[];
+    loading: boolean;
+    s_width: number;
 }
 
 export default class MovieCarousel extends React.Component<IMovieCarouselProps, IMovieCarouselState> {
     constructor(props: IMovieCarouselProps) {
         super(props);
-    
+        
         this.state = {
-            movies: [{}],
+            movies: [],
             loading: true,
+            s_width: window.innerWidth
         };
+
+        this.handleResize = this.handleResize.bind(this);
+        window.addEventListener('resize', this.handleResize)
       }
+
+    handleResize() {
+        this.setState({ s_width: window.innerWidth });
+    }
     
     componentDidMount() {
         axios.get(`${tmdbBaseUrl}/movie/${this.props.movieType}?api_key=${tmdbKey}&page=1`)
             .then(res => {
                 const movies = res.data.results;
-
-                this.setState({ movies: movies, loading: false });
                 
+                this.setState({ movies: movies, loading: false });
             });
     }
 
@@ -58,11 +66,24 @@ export default class MovieCarousel extends React.Component<IMovieCarouselProps, 
                             
                             <Carousel
                                 mr={30}
-                                height={380}
-                                slideSize="16.66%"
+                                height={
+                                    this.state.s_width < 480 ? 190 : (
+                                        this.state.s_width < 768 ? 240 : (
+                                            this.state.s_width < 1024 ? 300: 380
+                                        )) }
+                                slideSize={
+                                    this.state.s_width < 480 ? "100%" : (
+                                        this.state.s_width < 768 ? "50%" : (
+                                            this.state.s_width < 1024 ? "33.33%": "16.66%"
+                                        )) }
                                 slideGap="xs"
                                 align="start"
-                                slidesToScroll={6}>
+                                slidesToScroll={
+                                    this.state.s_width < 480 ? 1 : (
+                                        this.state.s_width < 768 ? 2 : (
+                                            this.state.s_width < 1024 ? 3 : 6
+                                        )
+                                    )}>
                                 {this.state.movies?.map(function(movie, index){
                                     return <Carousel.Slide key={index}>
                                             <MovieItem movie={movie} />

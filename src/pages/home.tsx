@@ -1,20 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import './home.css';
-import { Text, Stack, Container, Image, Overlay, Title, Rating, Grid, MediaQuery, Anchor } from "@mantine/core";
+import { Text, Stack, Container, Image, Overlay, Title, Rating, Grid, MediaQuery } from "@mantine/core";
 import { tmdbKey, tmdbBaseUrl, tmdbImageBaseUrl } from '../config';
 import { Movie } from '../models/movie';
 import MovieCarousel from '../components/movie-carousel';
-import { Carousel } from '@mantine/carousel';
-import MovieItem from '../components/movie-item';
 
 interface IHomeProps {
 }
 
 interface IHomeState {
-    latestMovie?: Movie;
-    movies?: [Movie];
-    loading?: boolean;
+    latestMovie: Movie;
+    loading: boolean;
 }
 
 export default class Home extends React.Component<IHomeProps, IHomeState> {
@@ -23,18 +20,16 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
     
         this.state = {
             latestMovie: {},
-            movies: [{}],
             loading: true
         };
       }
     
     componentDidMount() {
-        axios.get(`${tmdbBaseUrl}/movie/now_playing?api_key=${tmdbKey}&page=1`)
+        axios.get(`${tmdbBaseUrl}/movie/top_rated?api_key=${tmdbKey}&language=en-US&page=1`)
             .then(res => {
                 const movies = res.data.results;
                 const latestMovie = movies[0];
-                movies.shift();
-                this.setState({ latestMovie: latestMovie, movies: movies, loading: false });
+                this.setState({ latestMovie: latestMovie, loading: false });
             });
     }
 
@@ -75,40 +70,15 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                                 </Text>
                             </Stack>
                         </MediaQuery>
-                        
-
-                        <Stack mt={30} >
-                            <Grid>
-                                <Grid.Col span="content">
-                                    <Text fz="lg">Now playing movies</Text>
-                                </Grid.Col>
-                                <Grid.Col span="content">
-                                    <Text fz="lg">
-                                        <Anchor href='/now_playing' color='red.8'>
-                                            Explore all
-                                        </Anchor>
-                                    </Text>
-                                </Grid.Col>
-                            </Grid>
-                            <Carousel
-                                mr={30}
-                                height={380}
-                                slideSize="16.66%"
-                                slideGap="xs"
-                                align="start"
-                                slidesToScroll={6}>
-                                {this.state.movies?.map(function(movie, index){
-                                    return <Carousel.Slide key={index}>
-                                            <MovieItem movie={movie} />
-                                        </Carousel.Slide>;
-                                })}
-                            </Carousel>
-                        </Stack>
                         </>
                     )
                     
                 }
                 
+                <MovieCarousel
+                    movieType='now_playing'
+                    title='Now playing movies' />
+
                 <MovieCarousel
                     movieType='popular'
                     title='Popular movies' />
