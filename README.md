@@ -1,4 +1,4 @@
-# [HMDb: Hamza Movie Database Mantine Template](https://hmdb-react.vercel.app)
+# [HMDb: Hamza Movie Database](https://hmdb-react.vercel.app)
 
 This project is a tutorial code repo for learning React.
 
