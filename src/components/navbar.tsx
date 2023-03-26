@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Navbar, Center, UnstyledButton, createStyles, Stack, rem, Image } from '@mantine/core';
-import { AiOutlineHome, AiOutlineHeart, AiOutlineSearch, AiOutlineFire, AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineHeart, AiOutlineSearch, AiOutlineStar } from 'react-icons/ai';
+import { BiMoviePlay } from 'react-icons/bi';
+import { BsCalendar2Date, BsFire } from 'react-icons/bs';
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -46,8 +48,10 @@ const mockdata = [
   { icon: AiOutlineHome, path: ''},
   { icon: AiOutlineHeart, path: 'likes' },
   { icon: AiOutlineSearch, path: 'search' },
-  { icon: AiOutlineFire, path: 'now-playing' },
-  { icon: AiOutlineStar, path: 'stars'}
+  { icon: BiMoviePlay, path: 'now_playing' },
+  { icon: BsCalendar2Date, path: 'upcoming' },
+  { icon: BsFire, path: 'popular' },
+  { icon: AiOutlineStar, path: 'top_rated'}
 ];
 
 export function NavbarMinimal() {
@@ -55,11 +59,15 @@ export function NavbarMinimal() {
   let navigate = useNavigate();
   const location = useLocation();
   let currentIndex = 0;
-  if(location.pathname.startsWith('/stars')) {
+  if(location.pathname.startsWith('/top_rated')) {
+    currentIndex = 6;
+  } else if (location.pathname.startsWith('/popular')) {
+    currentIndex = 5;
+  } else if (location.pathname.startsWith('/upcoming')) {
     currentIndex = 4;
-  } else if (location.pathname.startsWith('/search')) {
+  } else if (location.pathname.startsWith('/now_playing')) {
     currentIndex = 3;
-  } else if (location.pathname.startsWith('/likes')) {
+  } else if (location.pathname.startsWith('/search')) {
     currentIndex = 2;
   } else if (location.pathname.startsWith('/likes')) {
     currentIndex = 1;

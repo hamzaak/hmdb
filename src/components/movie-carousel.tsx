@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Text, Stack } from "@mantine/core";
+import { Text, Stack, Anchor, Grid } from "@mantine/core";
 import { Carousel } from '@mantine/carousel';
 import { tmdbKey, tmdbBaseUrl } from '../config';
 import { Movie } from '../models/movie';
@@ -43,9 +43,21 @@ export default class MovieCarousel extends React.Component<IMovieCarouselProps, 
                 !this.state.loading && 
                     (
                         <Stack mt={30}>
-                            <Text fz="lg">{this.props.title}</Text>
+                            <Grid>
+                                <Grid.Col span="content">
+                                    <Text fz="lg">{this.props.title} </Text>
+                                </Grid.Col>
+                                <Grid.Col span="content">
+                                    <Text fz="lg">
+                                        <Anchor href={'/' + this.props.movieType} color="red.8">
+                                            Explore all
+                                        </Anchor>
+                                    </Text>
+                                </Grid.Col>
+                            </Grid>
+                            
                             <Carousel
-                                height={440}
+                                height={380}
                                 slideSize="16.66%"
                                 slideGap="xs"
                                 align="start"

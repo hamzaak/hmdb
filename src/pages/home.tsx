@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './home.css';
-import { Text, Stack, Container, Image, Overlay, Title, Rating, Grid, MediaQuery } from "@mantine/core";
+import { Text, Stack, Container, Image, Overlay, Title, Rating, Grid, MediaQuery, Anchor } from "@mantine/core";
 import { tmdbKey, tmdbBaseUrl, tmdbImageBaseUrl } from '../config';
 import { Movie } from '../models/movie';
 import MovieCarousel from '../components/movie-carousel';
@@ -45,7 +45,6 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                     !this.state.loading && 
                     (
                         <>
-                        
                         <Grid>
                             <Grid.Col span={2}></Grid.Col>
                             <Grid.Col span="auto">
@@ -56,7 +55,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                         </Grid>
 
                         <MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
-                            <Overlay opacity={0} style={{marginLeft: '7rem'}}>
+                            <Overlay opacity={0} style={{marginLeft: '7rem', marginBottom: '7rem'}}>
                                 <Stack align="flex-start" justify="center" style={{height: '100%', width: '50%'}}>
                                     <Title order={2}>{this.state.latestMovie?.original_title}</Title>
                                     <Rating value={this.state.latestMovie?.vote_average ? this.state.latestMovie?.vote_average / 2 : 0} fractions={50} readOnly/>
@@ -68,7 +67,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                         </MediaQuery>
 
                         <MediaQuery largerThan="md" styles={{ display: 'none' }}>
-                            <Stack mt={20} align="flex-start" justify="center" style={{height: '100%', width: '100%'}}>
+                            <Stack mt={20} align="flex-start" justify="center" style={{ width: '100%'}}>
                                 <Title order={2}>{this.state.latestMovie?.original_title}</Title>
                                 <Rating value={this.state.latestMovie?.vote_average ? this.state.latestMovie?.vote_average / 2 : 0} fractions={50} readOnly/>
                                 <Text ta="left" fz="lg">
@@ -76,27 +75,34 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                                 </Text>
                             </Stack>
                         </MediaQuery>
+                        
 
-                        {
-                            !this.state.loading && 
-                            (
-                                <Stack mt={30}>
+                        <Stack mt={30} style={{zIndex: 9999}}>
+                            <Grid>
+                                <Grid.Col span="content">
                                     <Text fz="lg">Now playing movies</Text>
-                                    <Carousel
-                                        height={440}
-                                        slideSize="16.66%"
-                                        slideGap="xs"
-                                        align="start"
-                                        slidesToScroll={6}>
-                                        {this.state.movies?.map(function(movie, index){
-                                            return <Carousel.Slide key={index}>
-                                                    <MovieItem movie={movie} />
-                                                </Carousel.Slide>;
-                                        })}
-                                    </Carousel>
-                                </Stack>
-                            )
-                        }
+                                </Grid.Col>
+                                <Grid.Col span="content">
+                                    <Text fz="lg">
+                                        <Anchor href='/now_playing' color='red.8'>
+                                            Explore all
+                                        </Anchor>
+                                    </Text>
+                                </Grid.Col>
+                            </Grid>
+                            <Carousel
+                                height={440}
+                                slideSize="16.66%"
+                                slideGap="xs"
+                                align="start"
+                                slidesToScroll={6}>
+                                {this.state.movies?.map(function(movie, index){
+                                    return <Carousel.Slide key={index}>
+                                            <MovieItem movie={movie} />
+                                        </Carousel.Slide>;
+                                })}
+                            </Carousel>
+                        </Stack>
                         </>
                     )
                     
