@@ -6,7 +6,7 @@ export default class Popular extends React.Component {
    
     render() {
         return (
-            <Container fluid style={{paddingTop: 0, paddingRight: 40 }}>
+            <Container fluid mr={30}>
                 <MovieList
                     movieType='popular'
                     title='Popular movies'

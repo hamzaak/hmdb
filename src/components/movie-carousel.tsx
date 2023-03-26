@@ -57,6 +57,7 @@ export default class MovieCarousel extends React.Component<IMovieCarouselProps, 
                             </Grid>
                             
                             <Carousel
+                                mr={30}
                                 height={380}
                                 slideSize="16.66%"
                                 slideGap="xs"

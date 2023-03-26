@@ -77,7 +77,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                         </MediaQuery>
                         
 
-                        <Stack mt={30} style={{zIndex: 9999}}>
+                        <Stack mt={30} >
                             <Grid>
                                 <Grid.Col span="content">
                                     <Text fz="lg">Now playing movies</Text>
@@ -91,7 +91,8 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
                                 </Grid.Col>
                             </Grid>
                             <Carousel
-                                height={440}
+                                mr={30}
+                                height={380}
                                 slideSize="16.66%"
                                 slideGap="xs"
                                 align="start"

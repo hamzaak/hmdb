@@ -6,7 +6,7 @@ export default class Upcoming extends React.Component {
    
     render() {
         return (
-            <Container fluid style={{paddingTop: 0, paddingRight: 40 }}>
+            <Container fluid mr={30}>
                 <MovieList
                     movieType='upcoming'
                     title='Upcoming movies'
