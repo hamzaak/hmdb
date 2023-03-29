@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Navbar, Center, UnstyledButton, createStyles, Stack, rem, Image } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import { Navbar, UnstyledButton, createStyles, Stack, rem } from '@mantine/core';
 import { AiOutlineHome, AiOutlineHeart, AiOutlineSearch, AiOutlineStar } from 'react-icons/ai';
 import { BiMoviePlay } from 'react-icons/bi';
 import { BsCalendar2Date, BsFire } from 'react-icons/bs';
@@ -35,16 +35,19 @@ interface NavbarLinkProps {
   onClick?(): void;
 }
 
-function NavbarLink({ icon: Icon, active, onClick }: NavbarLinkProps) {
+function NavbarLink({ icon: Icon, path, active, onClick }: NavbarLinkProps) {
   const { classes, cx } = useStyles();
   return (
-    <UnstyledButton onClick={onClick} className={cx(classes.link, { [classes.active]: active })}>
-      <Icon size="1.2rem" stroke={1.5} />
-    </UnstyledButton>
+    <Link to={path} >
+        <UnstyledButton className={cx(classes.link, { [classes.active]: active })}>
+          <Icon size="1.2rem" stroke={1.5} />
+        </UnstyledButton>
+    </Link>
+    
   );
 }
 
-const mockdata = [
+const navbarLinkData = [
   { icon: AiOutlineHome, path: ''},
   { icon: AiOutlineHeart, path: 'likes' },
   { icon: AiOutlineSearch, path: 'search' },
@@ -56,7 +59,6 @@ const mockdata = [
 
 export function NavbarMinimal() {
   
-  let navigate = useNavigate();
   const location = useLocation();
   let currentIndex = 0;
   if(location.pathname.startsWith('/top_rated')) {
@@ -73,28 +75,24 @@ export function NavbarMinimal() {
     currentIndex = 1;
   }
 
-  const routeChange = (index: number, path: string) => { 
-    setActive(index)
-    navigate(path);
-  }
+  useEffect(() => {
+    setActive(currentIndex);
+  }, [currentIndex]);
 
   const [active, setActive] = useState(currentIndex);
 
-  const links = mockdata.map((link, index) => (
+  const links = navbarLinkData.map((link, index) => (
     <NavbarLink
       {...link}
+      path={link.path}
       key={link.path}
       active={index === active}
-      onClick={() => routeChange(index, link.path)}
     />
   ));
 
   return (
     <Navbar width={{ base: 80 }} p="md" style={{backgroundColor: 'black'}}>
-      <Center mt={40}>
-        <Image maw={30} src="./logo.png" alt="Logo" />
-      </Center>
-      <Navbar.Section grow mt={30}>
+      <Navbar.Section grow>
         <Stack justify="center" spacing={5}>
           {links}
         </Stack>

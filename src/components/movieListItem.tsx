@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from "@mantine/core";
 import { Movie } from '../models/movie';
-import MovieItem from './movie-item';
+import MovieItem from './movieItem';
 
 interface IMovieListItemProps {
     movie: Movie;

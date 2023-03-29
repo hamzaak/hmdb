@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Text, Grid, Stack, Title, Button, Loader } from "@mantine/core";
 import { tmdbKey, tmdbBaseUrl } from '../config';
 import { Movie } from '../models/movie';
-import MovieListItem from './movie-list-item';
+import MovieListItem from './movieListItem';
 
 interface IMovieListProps {
     title: string;
