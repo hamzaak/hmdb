@@ -8,9 +8,10 @@ import {
     getTopRatedCarouselMoviesAsync, selectTopRatedCarouselMovies,
   } from '../reducers/moviesReducer';
 import './home.css';
-import { Text, Stack, Container, Image, Overlay, Title, Rating, Grid, MediaQuery, Center, Loader } from "@mantine/core";
+import { Text, Stack, Container, Overlay, Title, Rating, Grid, MediaQuery, Center, Loader } from "@mantine/core";
 import { tmdbImageBaseUrl } from '../config';
 import MovieCarousel from '../components/movieCarousel';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function Home() {
     const latestMovie = useAppSelector(selectLatestMovie);
@@ -41,7 +42,10 @@ export default function Home() {
                     <Container fluid className='now-playing' style={{padding:0, margin:0}}>
                         {
                             latestMovie.backdrop_path && (
-                                <Image mx="auto" src={tmdbImageBaseUrl + '/t/p/w1280' + latestMovie.backdrop_path} alt="Latest Movie" />
+                                <LazyLoadImage
+                                    alt='Latest Movie' 
+                                    style={{marginRight: 'auto', marginLeft: 'auto', width: '100%'}}
+                                    src={tmdbImageBaseUrl + '/t/p/w1280' + latestMovie.backdrop_path} />
                             )
                         }
                     </Container>

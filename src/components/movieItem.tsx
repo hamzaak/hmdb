@@ -1,15 +1,14 @@
 import React from 'react';
-import { Text, Stack, Image, Rating } from "@mantine/core";
+import { Text, Stack, Rating } from "@mantine/core";
 import { tmdbImageBaseUrl } from '../config';
 import { Movie } from '../models/movie';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface IMovieItemProps {
     movie: Movie;
 }
 
-interface IMovieItemState {
-    
-}
+interface IMovieItemState { }
 
 export default class MovieItem extends React.Component<IMovieItemProps, IMovieItemState> {
     
@@ -19,7 +18,10 @@ export default class MovieItem extends React.Component<IMovieItemProps, IMovieIt
                 {
                     this.props.movie.poster_path && 
                     (
-                        <Image className='image-hover-zoom' height={300} src={tmdbImageBaseUrl + '/t/p/w342' + this.props.movie.poster_path} alt={this.props.movie.original_title} />
+                        <LazyLoadImage
+                            alt={this.props.movie.original_title} 
+                            height={300}
+                            src={tmdbImageBaseUrl + '/t/p/w342' + this.props.movie.poster_path} />
                     )
                 }
                 <Text w={200} >{this.props.movie.original_title}</Text>
