@@ -52,7 +52,7 @@ const initialState: MoviesState = {
 };
 
 export const movieListSlice = createSlice({
-  name: 'counter',
+  name: 'movieList',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

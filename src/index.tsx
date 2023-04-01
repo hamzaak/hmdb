@@ -6,7 +6,6 @@ import Home from "./pages/home";
 import Favorite from "./pages/favorite";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "./ThemeProvider";
-import Search from "./pages/search";
 import { store } from './store';
 import { Provider } from "react-redux";
 import PopularMovies from "./pages/popularMovies";
@@ -14,6 +13,7 @@ import NowPlayingMovies from "./pages/nowPlayingMovies";
 import UpcomingMovies from "./pages/upcomingMovies";
 import TopRatedMovies from "./pages/topRatedMovies";
 import Footer from "./components/footer";
+import SearchMovies from "./pages/searchMovies";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -32,7 +32,7 @@ root.render(
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/likes" element={<Favorite />} />
-              <Route path="/search" element={<Search />} />
+              <Route path="/search" element={<SearchMovies />} />
               <Route path="/now_playing" element={<NowPlayingMovies />} />
               <Route path="/upcoming" element={<UpcomingMovies />} />
               <Route path="/popular" element={<PopularMovies />} />
