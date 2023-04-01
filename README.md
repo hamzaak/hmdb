@@ -6,29 +6,39 @@ Demo için [tıklayın](https://hmdb-react.vercel.app/).
 
 ## Ekran Görüntüleri
 
-<figure>
-  <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_home.png" alt="Home Page" style="width:100%">
-  <figcaption>Fig.1 - Home Page</figcaption>
-</figure>
+<img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_home.png" alt="Home Page" style="display: block;margin-left: auto;margin-right: auto; width:90%">
 
-<div align="center">
-    <figure>
-        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_now_playing.png" alt="Now Playing Movies" style="width:22%">
-        <figcaption>Fig.2 - Now Playing Movies</figcaption>
-    </figure>
-    <figure>
+<table style="display: block;margin-left: auto;margin-right: auto; width:90%; margin-top:1rem;">
+  <tr>
+    <td>
+        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_now_playing.png" alt="Now Playing Movies" style="width:100%">
+    </td>
+    <td>
         <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_upcoming.png" alt="Upcoming Movies" style="width:22%">
-        <figcaption>Fig.3 - Upcoming Movies</figcaption>
-    </figure>
-    <figure>
+    </td>
+    <td>
         <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_now_search.png" alt="Search Movies" style="width:22%">
-        <figcaption>Fig.4 - Search Movies</figcaption>
-    </figure>
-    <figure>
+    </td>
+    <td>
         <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_search_jo.png" alt="Search Movies for Jo" style="width:22%">
-        <figcaption>Fig.5 - Search Movies for "Jo"</figcaption>
-    </figure>
-</div>
+    </td>
+  </tr>
+  <tr>
+    <td style="font-style: italic;font-size: 10pt;text-align: center;">
+        Now Playing Movies
+    </td>
+    <td style="font-style: italic;font-size: 10pt;text-align: center;">
+        Upcoming Movies
+    </td>
+    <td style="font-style: italic;font-size: 10pt;text-align: center;">
+        Search Movies
+    </td>
+    <td style="font-style: italic;font-size: 10pt;text-align: center;">
+        Search Movies for "Jo"
+    </td>
+  </tr>
+</table>
+
 
 ## npm scripts
 
