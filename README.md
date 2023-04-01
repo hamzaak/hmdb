@@ -6,34 +6,34 @@ Demo için [tıklayın](https://hmdb-react.vercel.app/).
 
 ## Ekran Görüntüleri
 
-<img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_home.png" alt="Home Page" style="display: block;margin-left: auto;margin-right: auto; width:90%">
+<img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_home.png" alt="Home Page" style="width:100%">
 
-<table style="display: block;margin-left: auto;margin-right: auto; width:90%; margin-top:1rem;">
+<table style="display: block;margin-left: auto;margin-right: auto; width:100%; margin-top:1rem;">
   <tr>
     <td>
         <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_now_playing.png" alt="Now Playing Movies" style="width:100%">
     </td>
     <td>
-        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_upcoming.png" alt="Upcoming Movies" style="width:22%">
+        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_upcoming.png" alt="Upcoming Movies" style="width:100%">
     </td>
     <td>
-        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_now_search.png" alt="Search Movies" style="width:22%">
+        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_search.png" alt="Search Movies" style="width:100%">
     </td>
     <td>
-        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_search_jo.png" alt="Search Movies for Jo" style="width:22%">
+        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_search_jo.png" alt="Search Movies for Jo" style="width:100%">
     </td>
   </tr>
   <tr>
-    <td style="font-style: italic;font-size: 10pt;text-align: center;">
+    <td style="font-style: italic;font-size: 8pt;text-align: center;">
         Now Playing Movies
     </td>
-    <td style="font-style: italic;font-size: 10pt;text-align: center;">
+    <td style="font-style: italic;font-size: 8pt;text-align: center;">
         Upcoming Movies
     </td>
-    <td style="font-style: italic;font-size: 10pt;text-align: center;">
+    <td style="font-style: italic;font-size: 8pt;text-align: center;">
         Search Movies
     </td>
-    <td style="font-style: italic;font-size: 10pt;text-align: center;">
+    <td style="font-style: italic;font-size: 8pt;text-align: center;">
         Search Movies for "Jo"
     </td>
   </tr>
