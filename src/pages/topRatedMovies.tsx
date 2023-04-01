@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { Text, Container, Grid, Stack, Title, Loader, Button } from "@mantine/core";
-import { useAppSelector, useAppDispatch } from '../core/hooks';
-import {
-    getTopRatedMoviesAsync, selectTopRatedMoviesStatus, selectTopRatedMovies
-  } from '../reducers/moviesReducer';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { getTopRatedMoviesAsync } from "../store/actions/movieListActions";
+import { selectTopRatedMoviesStatus, selectTopRatedMovies } from '../store/reducers/movieListReducer';
 import MovieListItem from "../components/movieListItem";
 
 export default function TopRatedMovies () {

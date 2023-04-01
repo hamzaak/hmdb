@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { Text, Container, Grid, Stack, Title, Loader, Button } from "@mantine/core";
-import { useAppSelector, useAppDispatch } from '../core/hooks';
-import {
-    getNowPlayingMoviesAsync, selectNowPlayingMoviesStatus, selectNowPlayingMovies
-  } from '../reducers/moviesReducer';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { getNowPlayingMoviesAsync } from "../store/actions/movieListActions";
+import { selectNowPlayingMoviesStatus, selectNowPlayingMovies } from '../store/reducers/movieListReducer';
 import MovieListItem from "../components/movieListItem";
 
 export default function NowPlayingMovies () {

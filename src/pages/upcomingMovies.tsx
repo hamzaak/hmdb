@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { Text, Container, Grid, Stack, Title, Loader, Button } from "@mantine/core";
-import { useAppSelector, useAppDispatch } from '../core/hooks';
-import {
-    getUpcomingMoviesAsync, selectUpcomingMoviesStatus, selectUpcomingMovies
-  } from '../reducers/moviesReducer';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { getUpcomingMoviesAsync } from "../store/actions/movieListActions";
+import { selectUpcomingMoviesStatus, selectUpcomingMovies } from '../store/reducers/movieListReducer';
 import MovieListItem from "../components/movieListItem";
 
 export default function UpcomingMovies () {

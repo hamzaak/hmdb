@@ -1,14 +1,14 @@
 import { Text, Stack, Grid } from "@mantine/core";
 import { Carousel } from '@mantine/carousel';
-import { Movie } from '../models/movie';
 import MovieItem from './movieItem';
 import { Link } from 'react-router-dom';
 import { useCurrentWidth } from "../hooks/useCurrentWidth";
+import { IMovie } from "../store/types/movie";
 
 interface IMovieCarouselProps {
     title: string;
     category: string;
-    movies: Movie[];
+    movies: IMovie[];
 }
 
 export default function MovieCarousel (props: IMovieCarouselProps) {

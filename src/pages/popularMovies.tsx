@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { Text, Container, Grid, Stack, Title, Loader, Button } from "@mantine/core";
-import { useAppSelector, useAppDispatch } from '../core/hooks';
-import {
-    getPopularMoviesAsync, selectPopularMoviesStatus, selectPopularMovies
-  } from '../reducers/moviesReducer';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { getPopularMoviesAsync } from "../store/actions/movieListActions";
+import { selectPopularMoviesStatus, selectPopularMovies } from '../store/reducers/movieListReducer';
 import MovieListItem from "../components/movieListItem";
 
 export default function PopularMovies () {

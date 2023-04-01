@@ -7,12 +7,13 @@ import Favorite from "./pages/favorite";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "./ThemeProvider";
 import Search from "./pages/search";
-import { store } from './core/store';
+import { store } from './store';
 import { Provider } from "react-redux";
 import PopularMovies from "./pages/popularMovies";
 import NowPlayingMovies from "./pages/nowPlayingMovies";
 import UpcomingMovies from "./pages/upcomingMovies";
 import TopRatedMovies from "./pages/topRatedMovies";
+import Footer from "./components/footer";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -37,6 +38,7 @@ root.render(
               <Route path="/popular" element={<PopularMovies />} />
               <Route path="/top_rated" element={<TopRatedMovies />} />
             </Routes>
+            <Footer />
         </ThemeProvider>
       </AppShell>
       </MantineProvider>

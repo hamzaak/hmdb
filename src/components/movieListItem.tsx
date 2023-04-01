@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid } from "@mantine/core";
-import { Movie } from '../models/movie';
 import MovieItem from './movieItem';
+import { IMovie } from '../store/types/movie';
 
 interface IMovieListItemProps {
-    movie: Movie;
+    movie: IMovie;
 }
 
 interface IMovieListItemState {
