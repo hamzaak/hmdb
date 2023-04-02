@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import {
     getNowPlayingCarouselMoviesAsync,
@@ -29,6 +29,7 @@ export default function Home() {
     const popularCarouselMoviesStatus = useAppSelector(selectPopularCarouselMoviesStatus);
     const topRatedCarouselMovies = useAppSelector(selectTopRatedCarouselMovies);
     const topRatedCarouselMoviesStatus = useAppSelector(selectTopRatedCarouselMoviesStatus);
+    const [isLargestImageLoaded, setIsLargestImageLoaded] = useState(false);
 
     const dispatch = useAppDispatch();
 
@@ -39,17 +40,11 @@ export default function Home() {
 
         dispatch(getNowPlayingCarouselMoviesAsync())
                 .then(resNowPlaying => {
-                    console.log('now playing movies fetched');
                     dispatch(getUpcomingCarouselMoviesAsync())
                         .then(resUpcoming => {
-                            console.log('upcoming movies fetched');
                             dispatch(getPopularCarouselMoviesAsync())
                                 .then(resPopular => {
-                                    console.log('popular movies fetched');
-                                    dispatch(getTopRatedCarouselMoviesAsync())
-                                        .then(resTopRated => {
-                                            console.log('top rated movies fetched');
-                                        });
+                                    dispatch(getTopRatedCarouselMoviesAsync());
                                 });
                         });
                 });
@@ -61,18 +56,19 @@ export default function Home() {
             <Grid>
                 <Grid.Col span={2}></Grid.Col>
                 <Grid.Col span="auto">
-                    <Container fluid className='now-playing' style={{ padding: 0, margin: 0 }}>
+                    <Container fluid className='now-playing' style={{ padding: 0, margin: 0, height: '100%', width: '100%' }}>
                         {
                             latestMovie.backdrop_path && (
                                 <LazyLoadImage
                                     alt='Latest Movie'
+                                    onLoad={() => setIsLargestImageLoaded(true)}
                                     style={{ marginRight: 'auto', marginLeft: 'auto', width: '100%' }}
                                     src={`${TMDB_IMG_URL}/w1280${latestMovie.backdrop_path}`} />
                             )
                         }
                     </Container>
                     {
-                        upcomingCarouselMoviesStatus === 'loading' && (
+                        !isLargestImageLoaded && (
                             <Overlay opacity={1} style={{ marginLeft: '7rem', marginBottom: '7rem' }}>
                                 <Center style={{ height: '100%', width: '100%' }} mx="auto">
                                     <Loader color='red' />
@@ -83,7 +79,7 @@ export default function Home() {
                 </Grid.Col>
             </Grid>
             {
-                upcomingCarouselMoviesStatus !== 'loading' && (
+                isLargestImageLoaded && (
                     <>
                         <MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
                             <Overlay opacity={0} style={{ marginLeft: '7rem', marginBottom: '7rem' }}>
@@ -111,7 +107,7 @@ export default function Home() {
             }
 
             {
-                nowPlayingCarouselMoviesStatus !== 'loading' && (
+                nowPlayingCarouselMoviesStatus !== 'loading' && isLargestImageLoaded && (
                     <MovieCarousel
                         category='now_playing'
                         title='Now playing movies'
@@ -120,7 +116,7 @@ export default function Home() {
             }
 
             {
-                popularCarouselMoviesStatus !== 'loading' && (
+                popularCarouselMoviesStatus !== 'loading' && isLargestImageLoaded && (
                     <MovieCarousel
                         category='popular'
                         title='Popular movies'
@@ -129,7 +125,7 @@ export default function Home() {
             }
 
             {
-                upcomingCarouselMoviesStatus !== 'loading' && (
+                upcomingCarouselMoviesStatus !== 'loading' && isLargestImageLoaded && (
                     <MovieCarousel
                         category='upcoming'
                         title='Upcoming movies'
@@ -138,7 +134,7 @@ export default function Home() {
             }
 
             {
-                topRatedCarouselMoviesStatus !== 'loading' && (
+                topRatedCarouselMoviesStatus !== 'loading' && isLargestImageLoaded && (
                     <MovieCarousel
                         category='top_rated'
                         title='Top rated movies'

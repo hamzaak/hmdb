@@ -21,7 +21,7 @@ export default function SearchMovies () {
     }
 
     function loadMoreClick() {
-        console.log(query);
+        //console.log(query);
         dispatch(searchMoviesAsync({query: query, page: response.last_page}));
     }
 

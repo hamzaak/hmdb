@@ -18,25 +18,16 @@ export default function MovieItem(props: IMovieItemProps) {
     useEffect(() => {
         dispatch(isFavoriteMovieAsync(props.movie))
         .then((res: any) => {
+            //console.log(`movie:${props.movie.original_title}, isFavorite:${res.payload.isFavorite}`);
             setFavorite(res.payload.isFavorite)
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    });
     
     function onFavoriteClick(movie: IMovie) {
         //console.log(movie);
-        if(isFavorite) {
-            dispatch(unfavoriteMovieAsync(movie))
-            .then((res) => {
-                setFavorite(!isFavorite);
-            });
-        } else {
-            dispatch(favoriteMovieAsync(movie))
-            .then((res) => {
-                setFavorite(!isFavorite);
-            });
-        }
-        
+        setFavorite(!isFavorite);
+        isFavorite ? dispatch(unfavoriteMovieAsync(movie)) : dispatch(favoriteMovieAsync(movie));
     }
 
     return (

@@ -37,6 +37,34 @@ Demo için [tıklayın](https://hmdb-react.vercel.app/).
         Search Movies for "Jo"
     </td>
   </tr>
+  <tr>
+    <td>
+        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_top_rated-min.png" alt="Now Playing Movies" style="width:100%">
+    </td>
+    <td>
+        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_favorite-min.png" alt="Upcoming Movies" style="width:100%">
+    </td>
+    <td>
+        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_favorite_page-min.png" alt="Search Movies" style="width:100%">
+    </td>
+    <td>
+        
+    </td>
+  </tr>
+  <tr>
+    <td style="font-style: italic;font-size: 8pt;text-align: center;">
+        Top Rated Movies
+    </td>
+    <td style="font-style: italic;font-size: 8pt;text-align: center;">
+        Make Favorite 
+    </td>
+    <td style="font-style: italic;font-size: 8pt;text-align: center;">
+        Favorite Movies
+    </td>
+    <td style="font-style: italic;font-size: 8pt;text-align: center;">
+        
+    </td>
+  </tr>
 </table>
 
 
