@@ -1,31 +1,72 @@
-import React from 'react';
-import { Text, Stack, Rating } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { Text, Stack, Rating, ActionIcon } from "@mantine/core";
 import { TMDB_IMG_URL } from '../config';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { IMovie } from '../store/types/movie';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { useAppDispatch } from "../store/hooks";
+import { favoriteMovieAsync, isFavoriteMovieAsync, unfavoriteMovieAsync } from "../store/actions/movieFavoriteActions";
 
 interface IMovieItemProps {
     movie: IMovie;
 }
 
-interface IMovieItemState { }
+export default function MovieItem(props: IMovieItemProps) {
+    const [isFavorite, setFavorite] = useState(false);
+    const dispatch = useAppDispatch();
+    
+    useEffect(() => {
+        dispatch(isFavoriteMovieAsync(props.movie))
+        .then((res: any) => {
+            setFavorite(res.payload.isFavorite)
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    
+    function onFavoriteClick(movie: IMovie) {
+        //console.log(movie);
+        if(isFavorite) {
+            dispatch(unfavoriteMovieAsync(movie))
+            .then((res) => {
+                setFavorite(!isFavorite);
+            });
+        } else {
+            dispatch(favoriteMovieAsync(movie))
+            .then((res) => {
+                setFavorite(!isFavorite);
+            });
+        }
+        
+    }
 
-export default class MovieItem extends React.Component<IMovieItemProps, IMovieItemState> {
-    render() {
-        return (
-            <Stack spacing={5} style={{cursor: 'pointer'}}>
-                {
-                    this.props.movie.poster_path && 
-                    (
+    return (
+        <Stack spacing={5} style={{cursor: 'pointer'}}>
+            {
+                props.movie.poster_path && 
+                (
+                    <div style={{position: 'relative'}}>
                         <LazyLoadImage
                             wrapperClassName='image-hover-zoom'
-                            alt={this.props.movie.original_title} 
+                            alt={props.movie.original_title} 
                             height={300}
-                            src={`${TMDB_IMG_URL}/w342${this.props.movie.poster_path}`} />
-                    )
-                }
-                <Text w={200} >{this.props.movie.original_title}</Text>
-                <Rating value={this.props.movie.vote_average ? this.props.movie.vote_average / 2 : 0} fractions={50} readOnly/>
-            </Stack>
-    )}
+                            src={`${TMDB_IMG_URL}/w342${props.movie.poster_path}`} />
+
+                        <Stack style={{position: 'absolute', top: '0.5rem', right: '1rem'}}>
+                            <ActionIcon onClick={() => onFavoriteClick(props.movie)}>
+                                {
+                                    isFavorite 
+                                    ? ( <AiFillHeart size="2rem" color='#e03131' /> )
+                                    : ( <AiOutlineHeart size="2rem" color='#e03131' /> )
+                                }
+                                
+                            </ActionIcon>
+                        </Stack>
+                    </div>
+                )
+            }
+            <Text w={200} >{props.movie.original_title}</Text>
+            <Rating value={props.movie.vote_average ? props.movie.vote_average / 2 : 0} fractions={50} readOnly/>
+            
+        </Stack>
+)
 };

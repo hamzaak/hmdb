@@ -49,7 +49,7 @@ function NavbarLink({ icon: Icon, path, active, onClick }: NavbarLinkProps) {
 
 const navbarLinkData = [
   { icon: AiOutlineHome, path: ''},
-  { icon: AiOutlineHeart, path: 'likes' },
+  { icon: AiOutlineHeart, path: 'favorite' },
   { icon: AiOutlineSearch, path: 'search' },
   { icon: BiMoviePlay, path: 'now_playing' },
   { icon: BsCalendar2Date, path: 'upcoming' },
@@ -71,7 +71,7 @@ export function NavbarMinimal() {
     currentIndex = 3;
   } else if (location.pathname.startsWith('/search')) {
     currentIndex = 2;
-  } else if (location.pathname.startsWith('/likes')) {
+  } else if (location.pathname.startsWith('/favorite')) {
     currentIndex = 1;
   }
 

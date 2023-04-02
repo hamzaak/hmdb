@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { NavbarMinimal } from "./components/navbar";
 import Home from "./pages/home";
-import Favorite from "./pages/favorite";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "./ThemeProvider";
 import { store } from './store';
@@ -14,6 +13,7 @@ import UpcomingMovies from "./pages/upcomingMovies";
 import TopRatedMovies from "./pages/topRatedMovies";
 import Footer from "./components/footer";
 import SearchMovies from "./pages/searchMovies";
+import FavoriteMovies from "./pages/favoriteMovies";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -31,7 +31,7 @@ root.render(
         <ThemeProvider >
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/likes" element={<Favorite />} />
+              <Route path="/favorite" element={<FavoriteMovies />} />
               <Route path="/search" element={<SearchMovies />} />
               <Route path="/now_playing" element={<NowPlayingMovies />} />
               <Route path="/upcoming" element={<UpcomingMovies />} />

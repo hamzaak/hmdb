@@ -31,7 +31,7 @@ export interface MoviesState {
 }
 
 const initialState: MoviesState = {
-  latestMovie: { backdrop_path: '', poster_path: '', original_title: '', vote_average: 0, overview: '' },
+  latestMovie: {id: 0, backdrop_path: '', poster_path: '', original_title: '', vote_average: 0, overview: '' },
   nowPlayingMovies: { movies: [], total_pages: 0, total_results: 0, last_page: 1 },
   upcomingMovies: { movies: [], total_pages: 0, total_results: 0, last_page: 1 },
   popularMovies: { movies: [], total_pages: 0, total_results: 0, last_page: 1 },
