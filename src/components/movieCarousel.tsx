@@ -3,7 +3,7 @@ import { Carousel } from '@mantine/carousel';
 import MovieItem from './movieItem';
 import { Link } from 'react-router-dom';
 import { useCurrentWidth } from "../hooks/useCurrentWidth";
-import { IMovie } from "../store/types/movie";
+import { IMovie } from "../types/movie";
 
 interface IMovieCarouselProps {
     title: string;

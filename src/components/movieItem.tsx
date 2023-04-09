@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Text, Stack, Rating, ActionIcon } from "@mantine/core";
 import { TMDB_IMG_URL } from '../config';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { IMovie } from '../store/types/movie';
+import { IMovie } from '../types/movie';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useAppDispatch } from "../store/hooks";
-import { favoriteMovieAsync, isFavoriteMovieAsync, unfavoriteMovieAsync } from "../store/actions/movieFavoriteActions";
+import { favoriteMovieAsync, isFavoriteMovieAsync, unfavoriteMovieAsync } from "../store/favorites/actions";
 
 interface IMovieItemProps {
     movie: IMovie;

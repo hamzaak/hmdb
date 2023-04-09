@@ -1,14 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '..';
-import { getFavoriteMovieAsync, favoriteMovieAsync, unfavoriteMovieAsync } from '../actions/movieFavoriteActions'; 
-import { IMovie } from '../types/movie';
+import { getFavoriteMovieAsync, favoriteMovieAsync, unfavoriteMovieAsync } from './actions';
+import { IFavoriteMoviesState } from './types';
 
-export interface MovieFavoriteState {
-    movies: IMovie[];
-    status: 'idle' | 'loading' | 'failed';
-}
-
-const initialState: MovieFavoriteState = {
+const initialState: IFavoriteMoviesState = {
     movies: [],
     status: 'idle'
 };
@@ -18,7 +12,7 @@ export const movieFavoriteSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-            builder
+        builder
             .addCase(getFavoriteMovieAsync.pending, (state) => {
                 state.status = 'loading';
             })
@@ -51,8 +45,5 @@ export const movieFavoriteSlice = createSlice({
             });
     },
 });
-
-export const selectFavoriteMovies = (state: RootState) => state.movieFavorite.movies;
-export const selectFavoriteMoviesStatus = (state: RootState) => state.movieFavorite.status;
 
 export default movieFavoriteSlice.reducer;

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Text, Container, Grid, Stack, Title } from "@mantine/core";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { getFavoriteMovieAsync } from "../store/actions/movieFavoriteActions";
-import { selectFavoriteMovies } from "../store/reducers/movieFavoriteReducer";
+import { getFavoriteMovieAsync } from "../store/favorites/actions";
+import { selectFavoriteMovies } from "../store/favorites/selectors";
 import MovieListItem from "../components/movieListItem";
 
 export default function FavoriteMovies () {

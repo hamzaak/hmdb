@@ -1,4 +1,4 @@
-import { IMovie } from '../types/movie';
+import { IMovie } from "../types/movie";
 
 const LOCAL_STORAGE_KEY = 'hmdbLocalStorage';
 

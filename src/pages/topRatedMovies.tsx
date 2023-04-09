@@ -1,56 +1,65 @@
 import { useEffect } from "react";
 import { Text, Container, Grid, Stack, Title, Loader, Button } from "@mantine/core";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { getTopRatedMoviesAsync } from "../store/actions/movieListActions";
-import { selectTopRatedMoviesStatus, selectTopRatedMovies } from '../store/reducers/movieListReducer';
 import MovieListItem from "../components/movieListItem";
+import { 
+    selectTopRatedMoviesPage, 
+    selectTopRatedMovies,
+    selectTopRatedMoviesTotalPages,
+    selectTopRatedMoviesTotalResults,
+    selectTopRatedMoviesStatus
+} from "../store/movie/top-rated/selectors";
+import { fetchTopRatedMovies } from "../store/movie/top-rated/actions";
 
 export default function TopRatedMovies () {
-    const response = useAppSelector(selectTopRatedMovies);
-    const responseStatus = useAppSelector(selectTopRatedMoviesStatus);
+    const topRatedMoviesPage = useAppSelector(selectTopRatedMoviesPage);
+    const topRatedMovies = useAppSelector(selectTopRatedMovies);
+    const topRatedMoviesStatus = useAppSelector(selectTopRatedMoviesStatus);
+    const topRatedMoviesTotalPages = useAppSelector(selectTopRatedMoviesTotalPages);
+    const topRatedMoviesTotalResults = useAppSelector(selectTopRatedMoviesTotalResults);
     const dispatch = useAppDispatch();
     
     useEffect(() => {
-        dispatch(getTopRatedMoviesAsync(response.last_page));
+        if(topRatedMovies.length === 0) {
+            dispatch(fetchTopRatedMovies());
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     function loadMoreClick() {
-        dispatch(getTopRatedMoviesAsync(response.last_page));
+        dispatch(fetchTopRatedMovies(topRatedMoviesPage + 1));
     }
 
     return (
         <Container fluid mr={30}>
             <Stack mt={50}>
                 <Title order={2}>Top Rated Movies</Title>
-                <Text color="gray">{response.total_results} items</Text>
+                <Text color="gray">{ topRatedMoviesTotalResults } items</Text>
                 <Grid>
-                    {response.movies?.map(function(movie, index){
+                    {topRatedMovies?.map(function (movie, index) {
                         return <MovieListItem key={index} movie={movie} />;
                     })}
                 </Grid>
 
                 {
-                    response.last_page !== response.total_pages && 
+                    topRatedMoviesPage !== topRatedMoviesTotalPages &&
                     (
-                        <Button 
-                            variant="gradient" 
-                            gradient={{ from: 'pink', to: 'red' }}  
+                        <Button
+                            variant="gradient"
+                            gradient={{ from: 'pink', to: 'red' }}
                             onClick={loadMoreClick}>
-                                {
-                                    responseStatus === 'loading' ? (
-                                        <Loader variant="dots" color="white"/>
-                                    ) :
+                            {
+                                topRatedMoviesStatus === 'loading' ? (
+                                    <Loader variant="dots" color="white" />
+                                ) :
                                     (
                                         <Text>Load more</Text>
                                     )
-                                }
+                            }
                         </Button>
                     )
                 }
             </Stack>
-            
-            
         </Container>
     )
 };

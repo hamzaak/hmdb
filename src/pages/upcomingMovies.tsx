@@ -1,56 +1,66 @@
 import { useEffect } from "react";
 import { Text, Container, Grid, Stack, Title, Loader, Button } from "@mantine/core";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { getUpcomingMoviesAsync } from "../store/actions/movieListActions";
-import { selectUpcomingMoviesStatus, selectUpcomingMovies } from '../store/reducers/movieListReducer';
 import MovieListItem from "../components/movieListItem";
+import { 
+    selectUpcomingMovies, 
+    selectUpcomingMoviesPage, 
+    selectUpcomingMoviesStatus, 
+    selectUpcomingMoviesTotalPages,
+    selectUpcomingMoviesTotalResults
+} from "../store/movie/upcoming/selectors";
+import { fetchUpcomingMovies } from "../store/movie/upcoming/actions";
 
 export default function UpcomingMovies () {
-    const response = useAppSelector(selectUpcomingMovies);
-    const responseStatus = useAppSelector(selectUpcomingMoviesStatus);
+    const upcomingMoviesPage = useAppSelector(selectUpcomingMoviesPage);
+    const upcomingMovies = useAppSelector(selectUpcomingMovies);
+    const upcomingMoviesStatus = useAppSelector(selectUpcomingMoviesStatus);
+    const upcomingMoviesTotalPages = useAppSelector(selectUpcomingMoviesTotalPages);
+    const upcomingMoviesTotalResults = useAppSelector(selectUpcomingMoviesTotalResults);
+
     const dispatch = useAppDispatch();
     
     useEffect(() => {
-        dispatch(getUpcomingMoviesAsync(response.last_page));
+        if(upcomingMovies.length === 0) {
+            dispatch(fetchUpcomingMovies());
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     function loadMoreClick() {
-        dispatch(getUpcomingMoviesAsync(response.last_page));
+        dispatch(fetchUpcomingMovies(upcomingMoviesPage + 1));
     }
 
     return (
         <Container fluid mr={30}>
             <Stack mt={50}>
                 <Title order={2}>Upcoming Movies</Title>
-                <Text color="gray">{response.total_results} items</Text>
+                <Text color="gray">{ upcomingMoviesTotalResults } items</Text>
                 <Grid>
-                    {response.movies?.map(function(movie, index){
+                    {upcomingMovies?.map(function (movie, index) {
                         return <MovieListItem key={index} movie={movie} />;
                     })}
                 </Grid>
 
                 {
-                    response.last_page !== response.total_pages && 
+                    upcomingMoviesPage !== upcomingMoviesTotalPages &&
                     (
-                        <Button 
-                            variant="gradient" 
-                            gradient={{ from: 'pink', to: 'red' }}  
+                        <Button
+                            variant="gradient"
+                            gradient={{ from: 'pink', to: 'red' }}
                             onClick={loadMoreClick}>
-                                {
-                                    responseStatus === 'loading' ? (
-                                        <Loader variant="dots" color="white"/>
-                                    ) :
+                            {
+                                upcomingMoviesStatus === 'loading' ? (
+                                    <Loader variant="dots" color="white" />
+                                ) :
                                     (
                                         <Text>Load more</Text>
                                     )
-                                }
+                            }
                         </Button>
                     )
                 }
             </Stack>
-            
-            
         </Container>
     )
 };

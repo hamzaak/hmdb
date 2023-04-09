@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IMovie } from '../types/movie';
-import { favoriteMovie, getFavoriteMovies, isFavoriteMovie, unfavoriteMovie } from '../storage/movieFavoriteStorage';
+import { IMovie } from '../../types/movie';
+import { favoriteMovie, getFavoriteMovies, isFavoriteMovie, unfavoriteMovie } from '../../services/favoriteService';
 
 export const getFavoriteMovieAsync = createAsyncThunk(
     'movies/getFavoriteMovieAsync',
