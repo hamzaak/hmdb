@@ -1,22 +1,22 @@
 import { Text, Stack, Grid } from "@mantine/core";
 import { Carousel } from '@mantine/carousel';
-import MovieItem from './movieItem';
+import MovieItem from './movie-item';
 import { Link } from 'react-router-dom';
-import { useCurrentWidth } from "../hooks/useCurrentWidth";
+import { useCurrentWidth } from "../hooks/use-current-width";
+import { selectNowPlayingMovies } from "../store/movie/now-playing/selectors";
+import { fetchNowPlayingMovies } from "../store/movie/now-playing/actions";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect } from "react";
-import { selectTopRatedMovies } from "../store/movie/top-rated/selectors";
-import { fetchTopRatedMovies } from "../store/movie/top-rated/actions";
 
-export default function TopRatedCarousel () {
-    const movies = useAppSelector(selectTopRatedMovies);
+export default function NowPlayingCarousel () {
+    const movies = useAppSelector(selectNowPlayingMovies);
     const dispatch = useAppDispatch();
     let s_width = useCurrentWidth();
 
     useEffect(() => {
 
         if (movies.length === 0) {
-            dispatch(fetchTopRatedMovies());
+            dispatch(fetchNowPlayingMovies());
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,11 +26,11 @@ export default function TopRatedCarousel () {
         <Stack mt={30}>
             <Grid>
                 <Grid.Col span="content">
-                    <Text fz="lg">Top Rated Movies </Text>
+                    <Text fz="lg">Now Playing Movies </Text>
                 </Grid.Col>
                 <Grid.Col span="content">
                     <Text fz="lg">
-                        <Link to={'/top_rated'} style={{color: '#e03131'}}>Explore all</Link>
+                        <Link to={'/now_playing'} style={{color: '#e03131'}}>Explore all</Link>
                         
                     </Text>
                 </Grid.Col>

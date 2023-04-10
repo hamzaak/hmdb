@@ -1,8 +1,8 @@
 import { Text, Stack, Grid } from "@mantine/core";
 import { Carousel } from '@mantine/carousel';
-import MovieItem from './movieItem';
+import MovieItem from './movie-item';
 import { Link } from 'react-router-dom';
-import { useCurrentWidth } from "../hooks/useCurrentWidth";
+import { useCurrentWidth } from "../hooks/use-current-width";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect } from "react";
 import { selectPopularMovies } from "../store/movie/popular/selectors";

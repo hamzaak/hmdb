@@ -3,7 +3,7 @@ import { Text, Container, Grid, Stack, Title } from "@mantine/core";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { getFavoriteMovieAsync } from "../store/favorites/actions";
 import { selectFavoriteMovies } from "../store/favorites/selectors";
-import MovieListItem from "../components/movieListItem";
+import MovieListItem from "../components/movie-list-item";
 
 export default function FavoriteMovies () {
     const movies = useAppSelector(selectFavoriteMovies);

@@ -1,28 +1,36 @@
 import { Text, Stack, Grid } from "@mantine/core";
 import { Carousel } from '@mantine/carousel';
-import MovieItem from './movieItem';
+import MovieItem from './movie-item';
 import { Link } from 'react-router-dom';
-import { useCurrentWidth } from "../hooks/useCurrentWidth";
-import { IMovie } from "../types/movie";
+import { useCurrentWidth } from "../hooks/use-current-width";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useEffect } from "react";
+import { selectTopRatedMovies } from "../store/movie/top-rated/selectors";
+import { fetchTopRatedMovies } from "../store/movie/top-rated/actions";
 
-interface IMovieCarouselProps {
-    title: string;
-    category: string;
-    movies: IMovie[];
-}
-
-export default function MovieCarousel (props: IMovieCarouselProps) {
+export default function TopRatedCarousel () {
+    const movies = useAppSelector(selectTopRatedMovies);
+    const dispatch = useAppDispatch();
     let s_width = useCurrentWidth();
+
+    useEffect(() => {
+
+        if (movies.length === 0) {
+            dispatch(fetchTopRatedMovies());
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return(
         <Stack mt={30}>
             <Grid>
                 <Grid.Col span="content">
-                    <Text fz="lg">{props.title} </Text>
+                    <Text fz="lg">Top Rated Movies </Text>
                 </Grid.Col>
                 <Grid.Col span="content">
                     <Text fz="lg">
-                        <Link to={'/' + props.category} style={{color: '#e03131'}}>Explore all</Link>
+                        <Link to={'/top_rated'} style={{color: '#e03131'}}>Explore all</Link>
                         
                     </Text>
                 </Grid.Col>
@@ -48,7 +56,7 @@ export default function MovieCarousel (props: IMovieCarouselProps) {
                             s_width < 1024 ? 3 : 6
                         )
                     )}>
-                { props.movies && props.movies.map(function(movie, index){
+                { movies && movies.slice(0, 15).map(function(movie, index){
                     return <Carousel.Slide key={index}>
                             <MovieItem movie={movie} />
                         </Carousel.Slide>;

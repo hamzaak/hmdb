@@ -3,6 +3,7 @@ import { TMDB_API_KEY, TMDB_API_URL } from '../config';
 import { IMovie } from '../types/movie';
 import { ISearch } from '../types/search';
 import { ISearchMoviesRequest } from '../store/movie/search/types';
+import { IMovieDetails } from '../types/movie-details';
 
 export function getLatestMovie(id: number) {
     return new Promise<{ response: IMovie }>((resolve) => {
@@ -47,6 +48,14 @@ export function getTopRatedMovies(page: number) {
 export function searchMovies(request: ISearchMoviesRequest) {
     return new Promise<{ response: ISearch<IMovie> }>((resolve) => {
         axios.get(`${TMDB_API_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${request.query}&language=en-US&page=${request.page}&include_adult=false`)
+            .then(res => { resolve({ response: res.data }); })
+        } 
+    );
+};
+
+export function getMovieDetails(id: string) {
+    return new Promise<{ response: IMovieDetails }>((resolve) => {
+        axios.get(`${TMDB_API_URL}/movie/${id}?api_key=${TMDB_API_KEY}&language=en-US`)
             .then(res => { resolve({ response: res.data }); })
         } 
     );

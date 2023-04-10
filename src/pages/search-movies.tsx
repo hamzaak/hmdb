@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, Container, Grid, Stack, Title, Loader, Button, Input } from "@mantine/core";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import MovieListItem from "../components/movieListItem";
+import MovieListItem from "../components/movie-list-item";
 import { BsSearch } from "react-icons/bs";
 import {
     selectSearchMovies,

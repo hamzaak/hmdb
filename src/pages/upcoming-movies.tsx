@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Text, Container, Grid, Stack, Title, Loader, Button } from "@mantine/core";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import MovieListItem from "../components/movieListItem";
+import MovieListItem from "../components/movie-list-item";
 import { 
     selectUpcomingMovies, 
     selectUpcomingMoviesPage, 

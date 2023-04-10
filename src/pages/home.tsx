@@ -5,11 +5,11 @@ import { Container } from "@mantine/core";
 import { selectNowPlayingMoviesLatestMovie } from "../store/movie/now-playing/selectors";
 import { fetchNowPlayingMovies } from "../store/movie/now-playing/actions";
 
-const LatestMovie = lazy(() => import('../components/latestMovie'));
-const NowPlayingCarousel = lazy(() => import('../components/nowPlayingCarousel'));
-const UpcomingCarousel = lazy(() => import('../components/upcomingCarousel'));
-const PopularCarousel = lazy(() => import('../components/popularCarousel'));
-const TopRatedCarousel = lazy(() => import('../components/topRatedCarousel'));
+const LatestMovie = lazy(() => import('../components/latest-movie'));
+const NowPlayingCarousel = lazy(() => import('../components/now-playing-carousel'));
+const UpcomingCarousel = lazy(() => import('../components/upcoming-carousel'));
+const PopularCarousel = lazy(() => import('../components/popular-carousel'));
+const TopRatedCarousel = lazy(() => import('../components/top-rated-carousel'));
 
 export default function Home() {
     const latestMovie = useAppSelector(selectNowPlayingMoviesLatestMovie);
