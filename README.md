@@ -47,6 +47,9 @@ Demo için [tıklayın](https://hmdb-react.vercel.app/).
     <td>
         <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_favorite_page-min.png" alt="Search Movies" style="width:100%">
     </td>
+    <td>
+        <img src="https://raw.githubusercontent.com/hamzaak/hmdb/main/docs/ss_movie_details.png" alt="Movie Details" style="width:100%">
+    </td>
   </tr>
   <tr>
     <td style="font-style: italic;font-size: 8pt;text-align: center;">
@@ -57,6 +60,9 @@ Demo için [tıklayın](https://hmdb-react.vercel.app/).
     </td>
     <td style="font-style: italic;font-size: 8pt;text-align: center;">
         Favorite Movies
+    </td>
+    <td style="font-style: italic;font-size: 8pt;text-align: center;">
+        Movie Details
     </td>
   </tr>
 </table>
