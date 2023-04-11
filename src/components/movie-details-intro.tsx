@@ -3,11 +3,11 @@ import { TMDB_IMG_URL } from '../config';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { IMovieDetails } from "../types/movie-details";
 
-interface ILatestMovieProps {
+interface IMovieDetailsIntroProps {
     movieDetails: IMovieDetails | null;
 }
 
-export default function MovieFeature(props: ILatestMovieProps) {
+export default function MovieDetailsIntro(props: IMovieDetailsIntroProps) {
     return (
         <>
             <Grid>

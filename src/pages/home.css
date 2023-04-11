@@ -25,3 +25,8 @@
 .image-hover-zoom:hover img {
     transform: scale(1.1);
 }
+
+.disable-link-style {
+    color: white;
+    text-decoration: none;
+}

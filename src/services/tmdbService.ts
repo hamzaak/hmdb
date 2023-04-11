@@ -4,6 +4,7 @@ import { IMovie } from '../types/movie';
 import { ISearch } from '../types/search';
 import { ISearchMoviesRequest } from '../store/movie/search/types';
 import { IMovieDetails } from '../types/movie-details';
+import { IMovieCredits } from '../types/movie-credits';
 
 export function getLatestMovie(id: number) {
     return new Promise<{ response: IMovie }>((resolve) => {
@@ -56,6 +57,14 @@ export function searchMovies(request: ISearchMoviesRequest) {
 export function getMovieDetails(id: string) {
     return new Promise<{ response: IMovieDetails }>((resolve) => {
         axios.get(`${TMDB_API_URL}/movie/${id}?api_key=${TMDB_API_KEY}&language=en-US`)
+            .then(res => { resolve({ response: res.data }); })
+        } 
+    );
+};
+
+export function getMovieCredits(id: string) {
+    return new Promise<{ response: IMovieCredits }>((resolve) => {
+        axios.get(`${TMDB_API_URL}/movie/${id}/credits?api_key=${TMDB_API_KEY}&language=en-US`)
             .then(res => { resolve({ response: res.data }); })
         } 
     );

@@ -6,6 +6,7 @@ import topRatedMoviesReducer from './movie/top-rated/reducer';
 import searchMoviesReducer from './movie/search/reducer';
 import favoriteMoviesReducer from './favorites/reducer';
 import movieDetailsReducer from './movie/details/reducer';
+import movieCreditsReducer from './movie/credits/reducer';
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
     topRatedMovies: topRatedMoviesReducer,
     searchMovies: searchMoviesReducer,
     favoriteMovies: favoriteMoviesReducer,
-    movieDetails: movieDetailsReducer
+    movieDetails: movieDetailsReducer,
+    movieCredits: movieCreditsReducer
   }
 });
 

@@ -2,7 +2,6 @@ import { Text, Stack, Grid } from "@mantine/core";
 import { Carousel } from '@mantine/carousel';
 import MovieItem from './movie-item';
 import { Link } from 'react-router-dom';
-import { useCurrentWidth } from "../hooks/use-current-width";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect } from "react";
 import { selectTopRatedMovies } from "../store/movie/top-rated/selectors";
@@ -11,8 +10,7 @@ import { fetchTopRatedMovies } from "../store/movie/top-rated/actions";
 export default function TopRatedCarousel () {
     const movies = useAppSelector(selectTopRatedMovies);
     const dispatch = useAppDispatch();
-    let s_width = useCurrentWidth();
-
+    
     useEffect(() => {
 
         if (movies.length === 0) {
@@ -38,24 +36,10 @@ export default function TopRatedCarousel () {
             
             <Carousel
                 mr={30}
-                height={
-                    s_width < 480 ? 190 : (
-                        s_width < 768 ? 240 : (
-                            s_width < 1024 ? 300: 380
-                        )) }
-                slideSize={
-                    s_width < 480 ? "100%" : (
-                        s_width < 768 ? "50%" : (
-                            s_width < 1024 ? "33.33%": "16.66%"
-                        )) }
+                slideSize={ "20%"}
                 slideGap="xs"
                 align="start"
-                slidesToScroll={
-                    s_width < 480 ? 1 : (
-                        s_width < 768 ? 2 : (
-                            s_width < 1024 ? 3 : 6
-                        )
-                    )}>
+                slidesToScroll={4}>
                 { movies && movies.slice(0, 15).map(function(movie, index){
                     return <Carousel.Slide key={index}>
                             <MovieItem movie={movie} />

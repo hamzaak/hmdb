@@ -32,7 +32,7 @@ export default function MovieItem(props: IMovieItemProps) {
     }
 
     return (
-        <Link to={`/details/${props.movie.id}`}>
+        <Link to={`/details/${props.movie.id}`} className="disable-link-style">
             <Stack spacing={5} style={{cursor: 'pointer'}}>
                 {
                     props.movie.poster_path && 
@@ -41,7 +41,7 @@ export default function MovieItem(props: IMovieItemProps) {
                             <LazyLoadImage
                                 wrapperClassName='image-hover-zoom'
                                 alt={props.movie.original_title} 
-                                height={300}
+                                width="100%"
                                 src={`${TMDB_IMG_URL}/w342${props.movie.poster_path}`} />
 
                             <Stack style={{position: 'absolute', top: '0.5rem', right: '1rem'}}>
