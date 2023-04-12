@@ -17,7 +17,8 @@ export default function Home() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-
+        console.log(process.env.REACT_APP_TMDB_API_KEY);
+        
         if (!latestMovie) {
             dispatch(fetchNowPlayingMovies());
         }

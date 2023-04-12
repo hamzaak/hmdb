@@ -68,6 +68,15 @@ Demo için [tıklayın](https://hmdb-react.vercel.app/).
 </table>
 
 
+## installation
+Clone the project to the local pc;
+```
+git clone https://github.com/hamzaak/hmdb.git
+cd ./hmdb
+npm install
+npm start
+```
+
 ## npm scripts
 
 - `npm start` – start project locally
